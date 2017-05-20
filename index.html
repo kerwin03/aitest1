@@ -1,0 +1,43 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import java.sql.SQLException;
+
+public class deleteProductTestCases {
+
+	@Test
+	public void test() throws ClassNotFoundException, SQLException 
+	{
+		assertTrue(deleteProduct.delete_product(9876543210987L));//normal test with proper values - expected: pass
+		assertTrue(deleteProduct.delete_product(1234589891234L)); //valid barcode but not confirming delete - expected: fail
+		assertTrue(deleteProduct.delete_product(12345679812L)); //input long integer of size 11 (less than size 13) - expected: fail
+		assertTrue(deleteProduct.delete_product(123456798124532L));//input long integer of size 15 (greater than size 13) - expected: fail
+		assertTrue(deleteProduct.delete_product(1234589891214L));//input barcode which does not exist in DB - expected: fail
+	}
+	
+	@Test
+	public void testBarcode2() throws ClassNotFoundException, SQLException 
+	{
+		
+		//input "N" when asking confirmation
+	}
+	
+	@Test
+	public void testBarcode3() throws ClassNotFoundException, SQLException 
+	{
+		
+	}
+	
+	@Test
+	public void testBarcode4() throws ClassNotFoundException, SQLException 
+	{
+		assertTrue(deleteProduct.delete_product(123456798124532L));
+	}
+	
+	@Test
+	public void testBarcode5() throws ClassNotFoundException, SQLException 
+	{
+		assertTrue(deleteProduct.delete_product(1234589891214L));
+	}
+	
+}
